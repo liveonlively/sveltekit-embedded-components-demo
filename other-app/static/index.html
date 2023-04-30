@@ -1,0 +1,60 @@
+<style>
+	.container {
+		font-size: xx-large;
+		font-family: fantasy;
+		max-width: 600px;
+		margin: 20px auto;
+	}
+	.loader {
+		margin: 1px;
+		opacity: 0;
+		border-radius: 10px;
+		width: 10px;
+		height: 10px;
+		animation: pulse 2s ease-in-out infinite alternate;
+	}
+	@keyframes pulse {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+</style>
+
+<div class="container">
+	<div>Hello</div>
+
+	<div id="counter">
+		<div id="loadingAnimation" style="display: flex;">
+			<div class="loader" style="background-color: red; animation-delay: 000ms;"></div>
+			<div class="loader" style="background-color: orange; animation-delay: 100ms;"></div>
+			<div class="loader" style="background-color: yellow; animation-delay: 200ms;"></div>
+			<div class="loader" style="background-color: green; animation-delay: 300ms;"></div>
+			<div class="loader" style="background-color: blue; animation-delay: 400ms;"></div>
+			<div class="loader" style="background-color: indigo; animation-delay: 500ms;"></div>
+			<div class="loader" style="background-color: violet; animation-delay: 600ms;"></div>
+		</div>
+	</div>
+</div>
+<script src="./js/components.js"></script>
+<script>
+	console.log(window['SvelteKitComponents']);
+
+    var commonComponents = new SvelteKitComponents('common');
+    commonComponents.onLoad(function() {
+        var Counter = commonComponents.components['Counter'];
+        var counter = new Counter({
+            target: document.getElementById('counter'),
+            props: {},
+        });
+		// If component was something we wanted to update later
+		// window.setTimeout(function() {
+		// 	counter.$set({
+		// 		// some data
+		// 	});
+		// }, 5000);
+        document.getElementById('loadingAnimation').remove();
+    });
+</script>
